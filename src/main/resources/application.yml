@@ -12,37 +12,32 @@ spring:
     gateway:
       routes:
         - id: ms-usuario
-          uri: lb://ms-usuario
+          uri: https://ms-usuario-z7jc.onrender.com
           predicates:
             - Path=/api/usuarios/**
 
         - id: ms-producto
-          uri: lb://ms-producto
+          uri: https://ms-producto-ws46.onrender.com
           predicates:
             - Path=/api/productos/**
 
         - id: ms-bodega
-          uri: lb://ms-bodega
+          uri: https://ms-bodega-3vgn.onrender.com
           predicates:
             - Path=/api/bodegas/**
 
         - id: ms-pagos
-          uri: lb://ms-pagos
+          uri: https://ms-pagos-vdgr.onrender.com
           predicates:
             - Path=/pagos/**
 
         - id: ms-ventas
-          uri: lb://ms-ventas
+          uri: https://ms-ventas-4a5a.onrender.com
           predicates:
             - Path=/api/ventas/**
 
+# Desactivamos Eureka temporalmente para producción en Render, ya que usamos enrutamiento directo
 eureka:
   client:
-    service-url:
-      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
-    fetch-registry: true
-    register-with-eureka: true
-
-  instance:
-    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-    prefer-ip-address: true
+    fetch-registry: false
+    register-with-eureka: false
